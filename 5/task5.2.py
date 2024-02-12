@@ -41,15 +41,8 @@ def main():
     for i, row in enumerate(rows):
         if i == 0:
             x = None
-            for num in row.split(' '):
-                if num.isdigit() == False:
-                    continue
-                if x is not None:
-                    y = x + int(num)
-                    seed_ranges.append((x, y))
-                    x = None
-                else:
-                    x = int(num)
+            seed_nums = [int(num) for num in row.split(' ') if num.isdigit()]
+            seed_ranges = [(seed_nums[i], seed_nums[i]+ seed_nums[i+1]) for i in range(0, len(seed_nums), 2)]
         else:
             rownums = [int(num) for num in row.split(' ') if num.isdigit()]
             if len(rownums) == 0:
