@@ -9,14 +9,13 @@ def read_input() -> list:
 
 def unlock_safe(start=int, data=list) -> int:
     found_zeros = 0
-    clicks = 0
+    total_clicks = 0
     for move in data:
         index, clicks = rotate_knob(start, move)
         start = index
-        if(index == 0):
-            found_zeros += 1
-        found_zeros += clicks
-    return found_zeros
+        total_clicks += clicks
+
+    return total_clicks
 
 def rotate_knob(start=int, move=str) -> tuple:
     clicks = 0
@@ -34,8 +33,12 @@ def rotate_knob(start=int, move=str) -> tuple:
     elif(direction == 'R'):
         index = start + steps
         if(index >= 100):
-            clicks += 1
             index = index - 100
+            if(index != 0):
+                clicks += 1
+
+    if(index == 0):
+        clicks += 1
 
     print(f"Start: {start}, Move: {move}, Index: {index}, Clicks: {clicks}")
     return index, clicks
