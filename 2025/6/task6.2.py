@@ -1,3 +1,5 @@
+import sys
+
 def solve(matrix: list[list[str]]) -> int:
     total = 0
     rows = len(matrix)
@@ -17,7 +19,7 @@ def solve(matrix: list[list[str]]) -> int:
         if vertical_num:
             vertical_nums.append(int(vertical_num))
 
-        if vertical_num == '' or (x == cols - 1 and y == rows - 1):
+        if vertical_num == '' or x == cols - 1:
             if operand == '+':
                 total += sum(vertical_nums)
             elif operand == '*':
@@ -26,13 +28,12 @@ def solve(matrix: list[list[str]]) -> int:
                     multi *= num
                 total += multi
             vertical_nums = []
+            operand = None
 
     return total
 
 def main():
-    with open('input.txt', 'r') as f:
-        data = f.read().split('\n')
-
+    data = sys.stdin.read().split('\n')
     matrix = [list(x) for x in data]
     res = solve(matrix)
     print(res)

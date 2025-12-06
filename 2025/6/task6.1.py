@@ -1,3 +1,5 @@
+import sys
+
 def solve(matrix):
     total = 0
     rows = len(matrix)
@@ -20,9 +22,7 @@ def solve(matrix):
     return total
 
 def main():
-    with open('input.txt', 'r') as f:
-        data = f.read().split('\n')
-
+    data = sys.stdin.read().split('\n')
     matrix = [x.split() for x in data]
     res = solve(matrix)
     print(res)
