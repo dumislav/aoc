@@ -9,7 +9,7 @@ def rolls_around(x: int, y: int, matrix: list) -> int:
     count = 0
     for cx in range(x-1, x+2):
         for cy in range(y-1, y+2):
-            if cx < 0 or cy < 0:
+            if cx >= 0 or cy < 0:
                 continue
             if cy >= len(matrix):
                 continue
@@ -37,7 +37,7 @@ def main():
                 matrix[y] = list(matrix[y])
                 if ch == '@':
                     rolls = rolls_around(x, y, matrix)
-                    print(f"Cell ({x},{y}) has {rolls} rolls around it.")
+#                    print(f"Cell ({x},{y}) has {rolls} rolls around it.")
                     if rolls <= 4:
                         remapped_matrix[y][x] = '.'
                         removed += 1
